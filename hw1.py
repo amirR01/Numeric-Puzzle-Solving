@@ -1,5 +1,6 @@
 import heapq
 from copy import copy, deepcopy
+from sys import stdin, stdout
 
 class Node():
     def __init__(self, state, parent, action , cost):
@@ -108,7 +109,7 @@ def find_adjacent_nodes(node):
          adjacent[-1][i] = current[0][i]
          for j in range(0,len(current)-1):
             adjacent[j][i] = current[j+1][i]
-         
+        
          adjacent = tuple(map(tuple,adjacent))
          adjacent_nodes.append(("up "+str(i+1),adjacent))
     return adjacent_nodes
@@ -156,17 +157,24 @@ def path(source , target):
 
     shortest_path_list.reverse()
 
+
     return shortest_path_list
 
+# def fast_input():
+#     input = io.BytesIO(os.read(0, \
+#             os.fstat(0).st_size)).readline
+        
+#         # Taking input as string 
+#     s = input().decode()
+#     return s
 
-# IO
 X_star = []
 X_0 = []    
-n = int(input())
+n = int(stdin.readline())
 for i in range(n):
-    X_star.append(tuple(list(map(lambda x : int(x) ,input().split()))))
+    X_star.append(tuple(list(map(lambda x : int(x) ,stdin.readline().split()))))
 for i in range(n):
-    X_0.append(tuple(list(map(lambda x : int(x) ,input().split()))))
+    X_0.append(tuple(list(map(lambda x : int(x) ,stdin.readline().split()))))
 
 X_0 = tuple(X_0)
 X_star = tuple(X_star)
